@@ -1,0 +1,148 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "DesafioIgnite04 Documentation",
+    "description": "This is an challenge API",
+    "version": "1.0.0",
+    "contatct": {
+      "email": "l.eduardo8316@gmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "User example",
+                  "description": "create user example"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "User Already Exists"
+          }
+        }
+      },
+      "/{user_id}/admin": {
+        "tags": [
+          "Users"
+        ],
+        "patch": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "turn user in admin",
+          "description": "turn user in admin",
+          "parameters": {
+            "in": "path",
+            "name": "user_id",
+            "required": "true",
+            "schema": {
+              "type": "string",
+              "description": "the user ID"
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "no body"
+            },
+            "404": {
+              "description": "User Not Found"
+            }
+          }
+        }
+      },
+      "tags": [
+        "Users"
+      ],
+      "get": {
+        "tags": [
+          "Users"
+        ]
+      },
+      "summary": "Show Profile User",
+      "description": "Show Profile User",
+      "responses": {
+        "200": {
+          "description": "Success",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/{user_id}": {
+        "tags": [
+          "Users"
+        ],
+        "get": {
+          "tags": [
+            "Users"
+          ]
+        },
+        "summary": "List all users",
+        "description": "List all users",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
