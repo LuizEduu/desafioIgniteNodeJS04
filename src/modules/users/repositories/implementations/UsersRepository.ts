@@ -20,10 +20,10 @@ class UsersRepository implements IUsersRepository {
 
   create({ name, email }: ICreateUserDTO): User {
     const user = new User();
+
     Object.assign(user, {
       name,
       email,
-      admin: false,
       created_at: new Date(),
       updated_at: new Date(),
     });
@@ -50,9 +50,14 @@ class UsersRepository implements IUsersRepository {
       (user) => user.id === receivedUser.id
     );
 
-    this.users[indexUser] = receivedUser;
+    const user = receivedUser;
 
-    return receivedUser;
+    user.admin = true;
+    user.updated_at = new Date();
+
+    this.users[indexUser] = user;
+
+    return user;
   }
 
   list(): User[] {

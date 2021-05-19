@@ -15,9 +15,6 @@ class TurnUserAdminUseCase {
       throw new Error("User not exists!");
     }
 
-    findUser.admin = true;
-    findUser.updated_at = new Date();
-
     const user = this.usersRepository.turnAdmin(findUser);
 
     return user;
